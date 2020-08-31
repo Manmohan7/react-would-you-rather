@@ -1,11 +1,14 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import { handleInitialRequest } from '../actions/shared'
 
 import SignIn from './SignIn';
-import HomePage from './HomePage'
 import NavBar from './NavBar';
+import HomePage from './HomePage'
+import Question from './Question'
+import LeaderBoard from './LeaderBoard'
 import LoadingBar from 'react-redux-loading'
 
 class App extends Component {
@@ -15,25 +18,31 @@ class App extends Component {
 
   render() {
     return (
-      <Fragment>
-        <LoadingBar />
+      <Router>
+        <Fragment>
+          <LoadingBar />
 
-        <div className="container">
-          {
-            this.props.loading
-              ? this.props.loggedIn
-                ? <NavBar />
-                : <SignIn />
-              : null
-          }
-
-        </div>
-      </Fragment>
+          <div className="container">
+            {
+              this.props.loading
+                ? null
+                : this.props.loggedIn
+                  ? <div>
+                    <NavBar />
+                    <Route path='/' exact component={HomePage} />
+                    <Route path='/questions/:id' component={Question} />
+                    <Route path='/leaderboard' component={LeaderBoard} />
+                  </div>
+                  : <SignIn />
+            }
+          </div>
+        </Fragment>
+      </Router>
     )
   }
 }
 
 export default connect(({ loggedIn, users, questions }) => ({
   loggedIn,
-  loading: Object.keys(users).length && Object.keys(questions).length
+  loading: !(Object.keys(users).length && Object.keys(questions).length)
 }))(App)

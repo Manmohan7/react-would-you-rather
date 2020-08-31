@@ -1,40 +1,37 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class NavBar extends Component {
+  logout = () => {
+    console.log('logout clicked')
+    // todo: dispatch function to
+    // update store and logout user
+  }
+
   render() {
     const { users, loggedIn } = this.props
     const user = users[loggedIn]
 
     return (
       <nav className='navbar navbar-expand-md navbar-light bg-light sticky-top'>
-        <a className='navbar-brand' href='/'>
+
+        <Link
+          className='navbar-brand'
+          to='/'
+        >
           Would You Rather
-          </a>
+        </Link>
 
-        <ul className='navbar-nav'>
-        <li className='nav-item'>
-            <a className='nav-link' href='/'>
-              Home
-            </a>
-          </li>
+        <div className='navbar-nav'>
+          <Link className='nav-link' to='/'> Home </Link>
+          <Link className='nav-link' to='/'> New Question </Link>
+          <Link className='nav-link' to='/leaderboard'> Leaderboard </Link>
+        </div>
 
-          <li className='nav-item'>
-            <a className='nav-link' href='/'>
-              New Question
-            </a>
-          </li>
-          <li className='nav-item'>
-            <a className='nav-link' href='/'>
-              Leaderboard
-            </a>
-          </li>
-        </ul>
-
-        <ul className='navbar-nav ml-auto'>
-          <li className='nav-item mr-2'>
-            <a className='nav-link' href='/'>
-              <span> Hello, {user.name} </span>
+        <div className='navbar-nav ml-auto'>
+          <div className='nav-link mr-2 disabled'>
+            <span> Hello, {user.name} </span>
               <img
                 className='rounded-circle ml-1'
                 src={user.avatarURL}
@@ -42,14 +39,9 @@ class NavBar extends Component {
                 height='30'
                 width='30'
               />
-            </a>
-          </li>
-          <li className='nav-item'>
-            <a className='nav-link' href='/'>
-            Logout
-            </a>
-          </li>
-        </ul>
+          </div>
+          <span className='nav-link my-auto cursor-pointer' onClick={this.logout}> Logout </span>
+        </div>
       </nav>
     )
   }

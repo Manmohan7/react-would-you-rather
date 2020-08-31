@@ -17,3 +17,7 @@ code {
 .container {
   margin-top: 24px;
 }
+
+.cursor-pointer {
+  cursor: pointer;
+}
