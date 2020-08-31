@@ -1,26 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import { setUser } from '../actions/loggedIn'
+
 class SignIn extends Component {
   state = {
     user: ''
   }
 
-  updateUser = (event) => {
-    this.setState(() => ({
-      user: event.target.value
-    }))
-  }
-
   loginUser = (e) => {
     e.preventDefault();
 
-    // todo: set selected user as logged in
-    // and redirect to homepage
+    const { dispatch } = this.props
+    const { user } = this.state
+
+    dispatch(setUser(user))
   }
 
   render() {
     const { user } = this.state
+    const allUsers = Object.values(this.props.users)
 
     return (
       <div className='row justify-content-center'>
@@ -39,8 +38,9 @@ class SignIn extends Component {
                 >
                   <option value='' disabled>Select a user</option>
 
-
-                  <option value='manmohan'> Manmohan </option>
+                  {allUsers.map(u => (
+                    <option key={u.id} value={u.id}> {u.name} </option>
+                  ))}
                 </select>
               </div>
 

@@ -25,7 +25,6 @@ class App extends Component {
   }
 }
 
-export default connect(({ loggedIn, dispatch }) => ({
-  loggedIn,
-  dispatch
+export default connect(({ loggedIn }) => ({
+  loggedIn
 }))(App)
