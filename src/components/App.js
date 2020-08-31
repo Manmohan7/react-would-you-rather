@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux'
 
 import { handleInitialRequest } from '../actions/shared'
 
 import SignIn from './SignIn';
 import HomePage from './HomePage'
+import NavBar from './NavBar';
+import LoadingBar from 'react-redux-loading'
 
 class App extends Component {
   componentDidMount() {
@@ -13,18 +15,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        {
-          this.props.loggedIn
-            ? <HomePage />
-            : <SignIn />
-        }
+      <Fragment>
+        <LoadingBar />
 
-      </div>
+        <div className="container">
+          {
+            this.props.loading
+              ? this.props.loggedIn
+                ? <NavBar />
+                : <SignIn />
+              : null
+          }
+
+        </div>
+      </Fragment>
     )
   }
 }
 
-export default connect(({ loggedIn }) => ({
-  loggedIn
+export default connect(({ loggedIn, users, questions }) => ({
+  loggedIn,
+  loading: Object.keys(users).length && Object.keys(questions).length
 }))(App)
