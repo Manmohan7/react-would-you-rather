@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { logout } from '../actions/loggedIn'
 
 class NavBar extends Component {
   logout = () => {
     console.log('logout clicked')
-    // todo: dispatch function to
-    // update store and logout user
+
+    this.props.dispatch(logout())
   }
 
   render() {
