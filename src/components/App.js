@@ -27,12 +27,12 @@ class App extends Component {
               this.props.loading
                 ? null
                 : this.props.loggedIn
-                  ? <div>
+                  ? <Fragment>
                     <NavBar />
                     <Route path='/' exact component={HomePage} />
                     <Route path='/questions/:id' component={Question} />
                     <Route path='/leaderboard' component={LeaderBoard} />
-                  </div>
+                  </Fragment>
                   : <SignIn />
             }
           </div>

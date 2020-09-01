@@ -18,6 +18,10 @@ code {
   margin-top: 24px;
 }
 
+.row {
+  margin-top: 16px;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
