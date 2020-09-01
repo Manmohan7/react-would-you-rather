@@ -2,48 +2,42 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { logout } from '../actions/loggedIn'
+import { Navbar, Nav } from 'react-bootstrap'
 
 class NavBar extends Component {
-  logout = () => {
-    console.log('logout clicked')
-
-    this.props.dispatch(logout())
-  }
-
   render() {
-    const { users, loggedIn } = this.props
+    const { users, loggedIn, dispatch } = this.props
     const user = users[loggedIn]
 
     return (
-      <nav className='navbar navbar-expand-md navbar-light bg-light sticky-top'>
-
-        <Link
-          className='navbar-brand'
-          to='/'
-        >
+      <Navbar bg='light' expand='md' sticky='top'>
+        <Navbar.Brand href='#home'>
           Would You Rather
-        </Link>
+        </Navbar.Brand>
 
-        <div className='navbar-nav'>
-          <Link className='nav-link' to='/'> Home </Link>
-          <Link className='nav-link' to='/'> New Question </Link>
-          <Link className='nav-link' to='/leaderboard'> Leaderboard </Link>
-        </div>
+        <Navbar.Toggle aria-controls='navbar' />
+        <Navbar.Collapse id='navbar'>
+          <Nav className='mr-auto'>
+            <Nav.Link as={Link} to='/'> Home </Nav.Link>
+            <Nav.Link as={Link} to='/'> Questions </Nav.Link>
+            <Nav.Link as={Link} to='/leaderboard'> Leaderboard </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
 
-        <div className='navbar-nav ml-auto'>
-          <div className='nav-link mr-2 disabled'>
-            <span> Hello, {user.name} </span>
-              <img
-                className='rounded-circle ml-1'
-                src={user.avatarURL}
-                alt='Avatar'
-                height='30'
-                width='30'
-              />
-          </div>
-          <span className='nav-link my-auto cursor-pointer' onClick={this.logout}> Logout </span>
-        </div>
-      </nav>
+        <Nav className='ml-auto'>
+          <Navbar.Text className='mr-3'>
+            Hello, {user.name}
+            <img
+              className='rounded-circle ml-2'
+              src={user.avatarURL}
+              alt='Avatar'
+              height='30'
+              width='30'
+            />
+          </Navbar.Text>
+          <Nav.Link onClick={() => dispatch(logout())}> Logout </Nav.Link>
+        </Nav>
+      </Navbar>
     )
   }
 }
