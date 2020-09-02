@@ -4,10 +4,10 @@ This is the starter code for the final assessment project for Udacity's React & 
 
 The goal of this project is to better understand the working of Redux and getting a hands-on experience with a real world project.
 
-##About the project
+## About the project
 Would You Rather is a popular game in which you are given two choices.
 
-##Get Started
+## Get Started
 To get started developing right away:
 
 * install all project dependencies with `npm install`
