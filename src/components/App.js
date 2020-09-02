@@ -10,6 +10,7 @@ import HomePage from './HomePage'
 import Question from './Question'
 import LeaderBoard from './LeaderBoard'
 import LoadingBar from 'react-redux-loading'
+import NewQuestion from './NewQuestion';
 
 class App extends Component {
   componentDidMount() {
@@ -30,6 +31,7 @@ class App extends Component {
                   ? <Fragment>
                     <NavBar />
                     <Route path='/' exact component={HomePage} />
+                    <Route path='/new' component={NewQuestion} />
                     <Route path='/questions/:id' component={Question} />
                     <Route path='/leaderboard' component={LeaderBoard} />
                   </Fragment>
@@ -42,7 +44,7 @@ class App extends Component {
   }
 }
 
-export default connect(({ loggedIn, users, questions }) => ({
+export default connect(({ loggedIn, users, questions, loadingBar }) => ({
   loggedIn,
-  loading: !(Object.keys(users).length && Object.keys(questions).length)
+  loading: !(Object.keys(users).length && Object.keys(questions).length) || loadingBar.default
 }))(App)

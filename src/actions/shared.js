@@ -1,6 +1,6 @@
-import { getInitialData, saveQuestionAnswer } from '../utils/api'
-import { receiveUsers, addAnswerToUser } from './users'
-import { receiveQuestions, addAnswerToQuestion } from './questions'
+import { getInitialData, saveQuestionAnswer, saveQuestion } from '../utils/api'
+import { receiveUsers, addAnswerToUser, addUserQuestion } from './users'
+import { receiveQuestions, addAnswerToQuestion, addNewQuestion } from './questions'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
 export function handleInitialRequest() {
@@ -29,5 +29,20 @@ export function saveAnswer(userId, qId, selectedOption) {
         alert('Some error occurred')
         dispatch(hideLoading())
       })
+  }
+}
+
+export function addQuestion(optionOne, optionTwo) {
+  return (dispatch, getState) => {
+    dispatch(showLoading())
+
+    const { loggedIn } = getState()
+
+    return saveQuestion(optionOne, optionTwo, loggedIn)
+      .then((question) => {
+        dispatch(addNewQuestion(question))
+        dispatch(addUserQuestion(loggedIn, question.id))
+      })
+      .then(() => dispatch(hideLoading()))
   }
 }

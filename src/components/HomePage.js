@@ -16,7 +16,7 @@ class HomePage extends Component {
 
     return (
       <div className='row'>
-        <div className='col-12'>
+        <div className='col-12 my-5'>
           <Tabs defaultActiveKey='unanswered' className='nav-fill'>
 
             <Tab eventKey='unanswered' title='Unanswered' className='border'>
