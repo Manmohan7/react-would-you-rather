@@ -1,6 +1,6 @@
 import { SET_USER, LOGOUT } from '../actions/loggedIn'
 
-export default function loggedIn(state = 'tylermcginnis', action) {
+export default function loggedIn(state = null, action) {
   switch(action.type) {
     case SET_USER:
       return action.user
