@@ -11,9 +11,7 @@ class NavBar extends Component {
 
     return (
       <Navbar bg='light' expand='lg' sticky='top'>
-        <Navbar.Brand href='#home'>
-          Would You Rather
-        </Navbar.Brand>
+        <Navbar.Brand> Would You Rather </Navbar.Brand>
 
         <Navbar.Toggle aria-controls='navbar' />
         <Navbar.Collapse id='navbar'>

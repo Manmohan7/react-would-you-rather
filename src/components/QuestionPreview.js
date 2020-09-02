@@ -15,7 +15,7 @@ class QuestionPreview extends Component {
       <div className='col-6 mx-auto my-5'>
         <Card>
           <Card.Header as='h4'> {name} asks: </Card.Header>
-          <Card.Body className='row'>
+          <Card.Body className='d-flex'>
             <div className='col-5 text-center border-right'>
               <img
                 src={avatarURL}
@@ -26,9 +26,9 @@ class QuestionPreview extends Component {
               />
             </div>
             <div className='col-7'>
-              <h5 className='mb-3'> Would you rather ... </h5>
-              <div className='col-2 px-0 mb-5 text-truncate'> {optionOne.text} </div>
-              <Link to={`/question/${id}`}>
+              <h5 className='mb-3 text-captilize'> Would you rather </h5>
+              <div className='col-6 px-0 mb-5 text-truncate'> {optionOne.text} </div>
+              <Link to={`/questions/${id}`}>
                 <button
                   className='btn btn-outline-primary form-control'
                 > View Poll </button>
