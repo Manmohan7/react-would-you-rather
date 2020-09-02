@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { saveAnswer } from '../actions/shared'
 import { Card } from 'react-bootstrap'
 import OptionVotes from './OptionVotes'
 
@@ -17,6 +18,9 @@ class Question extends Component {
 
   submitAnswer = (e) => {
     e.preventDefault();
+
+    const { loggedIn, question, dispatch } = this.props
+    dispatch(saveAnswer(loggedIn, question.id, this.state.selectedVal))
   }
 
   render() {
