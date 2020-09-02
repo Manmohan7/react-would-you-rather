@@ -9,7 +9,7 @@ function Error404() {
         <Jumbotron className='text-center'>
           <h3> Question not found!! </h3>
           <div> Try adding a
-            <Link to='/new'> new question </Link>
+            <Link to='/add'> new question </Link>
              or go to
              <Link to='/'> homepage. </Link>
             </div>

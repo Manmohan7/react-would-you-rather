@@ -18,7 +18,7 @@ function NavBar(props) {
       <Navbar.Collapse id='navbar'>
         <Nav className='mr-auto'>
           <Nav.Link as={Link} to='/'> Home </Nav.Link>
-          <Nav.Link as={Link} to='/new'> New Question </Nav.Link>
+          <Nav.Link as={Link} to='/add'> New Question </Nav.Link>
           <Nav.Link as={Link} to='/leaderboard'> Leaderboard </Nav.Link>
         </Nav>
         <Nav className='ml-auto'>

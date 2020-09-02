@@ -32,7 +32,7 @@ class App extends Component {
                   ? <Fragment>
                     <NavBar />
                     <Route path='/' exact component={HomePage} />
-                    <Route path='/new' component={NewQuestion} />
+                    <Route path='/add' component={NewQuestion} />
                     <Route path='/questions/:id' component={Question} />
                     <Route path='/leaderboard' component={LeaderBoard} />
                     <Route path='/404' component={Error404} />

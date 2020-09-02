@@ -9,7 +9,7 @@ class Question extends Component {
   render() {
     const { questions, users, match, loggedIn } = this.props
     if(questions[match.params.id] === undefined) {
-      return <Redirect to='404' />
+      return <Redirect to='/404' />
     }
 
     const question = questions[match.params.id],
