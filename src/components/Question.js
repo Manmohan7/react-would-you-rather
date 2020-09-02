@@ -1,44 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { saveAnswer } from '../actions/shared'
 import { Card } from 'react-bootstrap'
-import OptionVotes from './OptionVotes'
+import Answered from './Answered'
+import Unanswered from './Unanswered'
+import { Redirect } from 'react-router-dom'
 
 class Question extends Component {
-  state = {
-    selectedVal: ''
-  }
-
-  updateSelection = (e) => {
-    const selectedVal = e.currentTarget.value
-    this.setState(() => ({
-      selectedVal
-    }))
-  }
-
-  submitAnswer = (e) => {
-    e.preventDefault();
-
-    const { loggedIn, question, dispatch } = this.props
-    dispatch(saveAnswer(loggedIn, question.id, this.state.selectedVal))
-  }
-
   render() {
-    const { question, author, loggedIn } = this.props
-
-    const optionOne = {
-      ...question.optionOne,
-      selected: question.optionOne.votes.includes(loggedIn)
+    const { questions, users, match, loggedIn } = this.props
+    if(questions[match.params.id] === undefined) {
+      return <Redirect to='404' />
     }
-    const optionTwo = {
-      ...question.optionTwo,
-      selected: question.optionTwo.votes.includes(loggedIn)
-    }
-    const totalVotes = [...optionOne.votes, ...optionTwo.votes]
-    const isAnswered = totalVotes.includes(loggedIn)
 
-
-    const title = 'Would you rather'
+    const question = questions[match.params.id],
+      author = users[question.author],
+      totalVotes = [...question.optionOne.votes, ...question.optionTwo.votes],
+      isAnswered = totalVotes.includes(loggedIn)
 
     return (
       <div className='row'>
@@ -58,58 +35,8 @@ class Question extends Component {
 
               {
                 isAnswered
-                  ? <div className='col-7'>
-                    <h5> Results: </h5>
-
-                    <OptionVotes
-                      option={optionOne}
-                      totalVotes={totalVotes}
-                    />
-
-                    <OptionVotes
-                      option={optionTwo}
-                      totalVotes={totalVotes}
-                    />
-                  </div>
-                  : <div className='col-7'>
-                    <h5 className='mb-3 text-capitalize'> {title} </h5>
-
-                    <form onSubmit={this.submitAnswer}>
-                      <div className='form-check'>
-                        <label className='form-check-label my-2'>
-                          <input
-                            type='radio'
-                            className='form-check-input'
-                            name='questionPoll'
-                            value='optionOne'
-                            checked={this.state.selectedVal === 'optionOne'}
-                            onChange={this.updateSelection}
-                          />
-                          {optionOne.text}
-                        </label>
-                      </div>
-
-                      <div className='form-check'>
-                        <label className='form-check-label my-2'>
-                          <input
-                            type='radio'
-                            className='form-check-input'
-                            name='questionPoll'
-                            value='optionTwo'
-                            checked={this.state.selectedVal === 'optionTwo'}
-                            onChange={this.updateSelection}
-                          />
-                          {optionTwo.text}
-                        </label>
-                      </div>
-
-                      <input
-                        type='submit'
-                        className='btn btn-primary form-control'
-                        disabled={this.state.selectedVal === ''}
-                      />
-                    </form>
-                  </div>
+                  ? <Answered question={question} totalVotes={totalVotes} />
+                  : <Unanswered question={question} />
               }
             </Card.Body>
           </Card>
@@ -120,12 +47,9 @@ class Question extends Component {
 }
 
 function mapStoreToProps({ questions, users, loggedIn }, props) {
-  const question = questions[props.match.params.id]
-  const author = users[question.author]
-
   return {
-    question,
-    author,
+    questions,
+    users,
     loggedIn
   }
 }

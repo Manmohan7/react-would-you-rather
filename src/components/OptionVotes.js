@@ -1,7 +1,9 @@
 import React from 'react'
+import { ProgressBar } from 'react-bootstrap'
 
 export default function OptionVote(props) {
   const { option, totalVotes } = props
+  const percent = ((option.votes.length / totalVotes.length) * 100).toFixed(2)
 
   return (
     <div className={
@@ -14,7 +16,14 @@ export default function OptionVote(props) {
         > Selected </span>
       }
       <div className='my-3'> Would you rather {option.text}? </div>
-      <div className='bg-light border rounded-lg text-center p-1'>
+
+      <ProgressBar
+        now={percent}
+        label={`${percent}%`}
+        className='rounded-pill my-2'
+      />
+
+      <div className='text-center p-1'>
         {option.votes.length} out {totalVotes.length} votes
       </div>
     </div>

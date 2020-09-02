@@ -11,6 +11,7 @@ import Question from './Question'
 import LeaderBoard from './LeaderBoard'
 import LoadingBar from 'react-redux-loading'
 import NewQuestion from './NewQuestion';
+import Error404 from './Error404'
 
 class App extends Component {
   componentDidMount() {
@@ -34,6 +35,7 @@ class App extends Component {
                     <Route path='/new' component={NewQuestion} />
                     <Route path='/questions/:id' component={Question} />
                     <Route path='/leaderboard' component={LeaderBoard} />
+                    <Route path='/404' component={Error404} />
                   </Fragment>
                   : <SignIn />
             }
