@@ -1,6 +1,6 @@
 # Would You Rather Project
 
-This is the starter code for the final assessment project for Udacity's React & Redux course. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the final assessment project for Udacity's React & Redux course. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 The goal of this project is to better understand the working of Redux and getting a hands-on experience with a real world project.
 
