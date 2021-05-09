@@ -7,8 +7,21 @@ The goal of this project is to better understand the working of Redux and gettin
 ## About the project
 Would You Rather is a popular game in which you are given two choices.
 
-## Get Started
+## Working
+To see this app in action click [here](https://github.com/Manmohan7/react-would-you-rather).
+
+## Development Server
 To get started developing right away:
 
+* clone this repo `https://github.com/Manmohan7/react-would-you-rather.git`
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
+
+## Build
+
+Run `npm run build` to build the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+## Gh-pages
+
+To deploy the project on github pages, use the command `npm run deploy`.
