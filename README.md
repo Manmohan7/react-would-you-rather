@@ -8,7 +8,7 @@ The goal of this project is to better understand the working of Redux and gettin
 Would You Rather is a popular game in which you are given two choices.
 
 ## Working
-To see this app in action click [here](https://github.com/Manmohan7/react-would-you-rather).
+To see this app in action click [here](https://manmohan7.github.io/react-would-you-rather/).
 
 ## Development Server
 To get started developing right away:
